@@ -40,10 +40,18 @@ test:
   script:
     - npm run test -- --no-watch --no-progress --browsers=ChromeHeadless --no-sandbox
 
-docker-deploy:
+docker-delivery:
   tags:
     - "docker"
   stage: deploy
   script:
     - docker build -t benoitsemifir/netflux:1.0.0 .
     - docker push benoitsemifir/netflux:1.0.0
+
+azure-deploy:
+  tags:
+    - "azure"
+    - "docker"
+  stage: deploy
+  script:
+    - echo 'déployé sur azure'
