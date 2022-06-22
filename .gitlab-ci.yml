@@ -37,4 +37,4 @@ test:
     - apt install -y ./google-chrome*.deb;
     - export CHROME_BIN=/usr/bin/google-chrome
   script:
-    - npm run test -- --no-watch --no-progress --browsers=Headless
+    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
