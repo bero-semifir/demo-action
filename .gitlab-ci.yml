@@ -20,11 +20,15 @@ stages:
   - test
 
 install:
+  tags:
+    - "node"
   stage: setup
   script:
     - npm ci
 
 test:
+  tags:
+    - "node"
   stage: test
   extends: .pull_cached_node_modules
   before_script:
@@ -33,4 +37,4 @@ test:
     - apt install -y ./google-chrome*.deb;
     - export CHROME_BIN=/usr/bin/google-chrome
   script:
-    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+    - npm run test -- --no-watch --no-progress --browsers=Headless
