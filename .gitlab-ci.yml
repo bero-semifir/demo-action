@@ -18,6 +18,7 @@ cache:
 stages:
   - setup
   - test
+  - deploy
 
 install:
   tags:
@@ -38,3 +39,11 @@ test:
     - export CHROME_BIN=/usr/bin/google-chrome
   script:
     - npm run test -- --no-watch --no-progress --browsers=ChromeHeadless --no-sandbox
+
+docker-deploy:
+  tags:
+    - "docker"
+  stage: deploy
+  script:
+    - docker build -t benoitsemifir/netflux:1.0.0 .
+    - docker push benoitsemifir/netflux:1.0.0
