@@ -30,6 +30,7 @@ jobs:
     - run: npm run build --if-present
   test:
     runs-on: ubuntu-latest
+    # Cette étape a besoin du resultat de l'étape build
     needs: [build]
     steps:
     - name: test
@@ -37,4 +38,7 @@ jobs:
       with:
         cache: npm
     - run: npm test
-
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ DOCKERHUB_USERNAME }}
